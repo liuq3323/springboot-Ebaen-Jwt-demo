@@ -15,8 +15,10 @@ public class MyUserRepositoryService {
     EbeanServer server;
 
     public List<MyUser> findByUsername(String username){
+
         List<MyUser> myUser = server.find(MyUser.class).where().eq("username" , username).findList();
         return myUser;
+
     }
 
     public void save(MyUser user){
