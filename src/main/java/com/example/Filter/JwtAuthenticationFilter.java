@@ -52,7 +52,7 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter{
             //parse the token 获取token中用户信息
             String user = (String) Jwts.parser()
                     .setSigningKey("MyJwtSecret")
-                    .parseClaimsJws(token.replace("Bearer ", ""))
+                    .parseClaimsJws(token)
                     .getBody()
                     .get("username");
 
@@ -64,7 +64,7 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter{
             if (StringUtils.isEmpty(myUser))
                 return null;
 
-                return new UsernamePasswordAuthenticationToken(myUser.get(0).getUsername(), myUser.get(0).getPassword(), new ArrayList<>());
+            return new UsernamePasswordAuthenticationToken(myUser.get(0).getUsername(), myUser.get(0).getPassword(), new ArrayList<>());
         }
         return null;
     }
